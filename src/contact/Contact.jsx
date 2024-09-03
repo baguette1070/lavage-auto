@@ -1,9 +1,10 @@
 import React from 'react';
 import { MapPin, Facebook, Instagram, Snapchat } from 'lucide-react';
+import photoTest from '../assets/martin-katler-S0q7CvqX6O4-unsplash.jpg'
 
 function Contact() {
     return (
-        <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto p-6 h-screen">
+        <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto p-6">
             <div className="w-full md:w-1/2 pr-6">
                 <h1 className="text-couleur-titre text-4xl mb-4">Contactez-nous</h1>
                 <p className="text-xl text-gray-600 mb-6">
@@ -30,7 +31,12 @@ function Contact() {
             <div className="w-full md:w-1/2 mt-6 md:mt-0">
                 <div className="h-64 bg-gray-300 mb-4">
                     {/* Placeholder pour la carte */}
-                    <img src="/api/placeholder/400/320" alt="Carte" className="w-full h-full object-cover" />
+                    <iframe
+                        src="/src/brussels_map.html"
+                        title="Brussels Map"
+                        className="w-full h-full"
+                        style={{ border: 0 }}
+                    />
                 </div>
                 <h2 className="text-xl font-semibold mb-2">Localisation</h2>
                 <p className="flex items-center text-gray-600 mb-4">
@@ -39,7 +45,7 @@ function Contact() {
                 </p>
                 <div className="flex space-x-4">
                     <a href="#" className="text-teal-500 hover:text-teal-600"><Facebook size={24}/></a>
-                    <a href="#" className="text-teal-500 hover:text-teal-600"><Instagram size={24}/>></a>
+                    <a href="#" className="text-teal-500 hover:text-teal-600"><Instagram size={24}/></a>
                     <a href="#" className="text-teal-500 hover:text-teal-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                              fill="currentColor">
