@@ -3,6 +3,7 @@ import Body from  './body/Body.jsx'
 import About from "./About/About";
 import Prestations from "./prestations/Prestations";
 import Faq from "./faq/Faq";
+import './index.css'
 
 function App() {
   return (
