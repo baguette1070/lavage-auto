@@ -3,7 +3,11 @@ import Body from  './body/Body.jsx'
 import About from "./About/About";
 import Prestations from "./prestations/Prestations";
 import Faq from "./faq/Faq";
+<<<<<<< HEAD
 import './index.css'
+=======
+import Contact from "./contact/Contact.jsx"
+>>>>>>> origin
 
 function App() {
   return (
@@ -13,6 +17,7 @@ function App() {
       <About></About>
       <Prestations></Prestations>
       <Faq></Faq>
+        <Contact></Contact>
     </>
   );
 }
