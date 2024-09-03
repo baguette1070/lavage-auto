@@ -8,7 +8,7 @@ function About() {
                         Qui sommes-nous ?
                     </h1>
                     <p className='text-black text-opacity-70 text-lg leading-relaxed'>
-                        Bienvenue chez Giacca, votre expert en lavage de voitures à Bruxelles. Offrant des services de qualité à des prix abordables, nous nous engageons à rendre vos voitures impeccables tout en respectant votre budget.
+                        Bienvenue chez Lavage-Auto, votre expert en lavage de voitures à Bruxelles. Offrant des services de qualité à des prix abordables, nous nous engageons à rendre vos voitures impeccables tout en respectant votre budget.
                     </p>
                 </div>
             </div>

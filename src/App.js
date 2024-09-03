@@ -3,6 +3,7 @@ import Body from  './body/Body.jsx'
 import About from "./About/About";
 import Prestations from "./prestations/Prestations";
 import Faq from "./faq/Faq";
+import Contact from "./contact/Contact.jsx"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <About></About>
       <Prestations></Prestations>
       <Faq></Faq>
+        <Contact></Contact>
     </>
   );
 }
