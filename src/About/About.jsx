@@ -7,7 +7,7 @@ function About() {
                     <h1 className='text-couleur-titre text-4xl text-center py-6 font-semibold'>
                         Qui sommes-nous ?
                     </h1>
-                    <p className='text-black text-opacity-70 text-lg leading-relaxed'>
+                    <p className='text-black text-opacity-80 text-xl leading-relaxed'>
                         Bienvenue chez Lavage-Auto, votre expert en lavage de voitures à Bruxelles. Offrant des services de qualité à des prix abordables, nous nous engageons à rendre vos voitures impeccables tout en respectant votre budget.
                     </p>
                 </div>

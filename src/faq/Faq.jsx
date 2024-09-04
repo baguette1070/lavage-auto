@@ -64,7 +64,7 @@ function Faq() {
                             className={`overflow-hidden transition-all duration-500 ${visibleAnswer === 2 ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
                         >
                             <div className="bg-gray-100 p-4">
-                                <p>Vous pouvez planifier un rendez-vous en nous contactant par téléphone ou en utilisant notre formulaire en ligne.</p>
+                                <p>Vous pouvez planifier un rendez-vous en utilisant notre formulaire en ligne ou nous contacter sur les réseaux ci-dessous.</p>
                             </div>
                         </div>
                     </div>
