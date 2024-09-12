@@ -22,27 +22,29 @@ function Contact() {
     // Fonction pour gérer la soumission du formulaire
     const handleSubmit = async (event) => {
         event.preventDefault();  // Empêche le rechargement de la page
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', message);
-
+    
+        const formData = {
+            name: name,
+            email: email,
+            message: message
+        };
+    
         try {
             const response = await fetch('http://localhost:3001', { 
                 method: 'POST', 
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json',  // Définir le type de contenu à JSON
+                },
+                body: JSON.stringify(formData),
             });
-
+    
             if (!response.ok) {
                 const errorDetails = await response.text();
-                console.error('Erreur lors de l\'envoi des données :', errorDetails);
-                setMessage(`Erreur : ${response.status} - ${errorDetails}`);
-              } else {
-                setMessage('Données envoyées avec succès !');
-              }
+                setFormMessage(`Erreur : ${response.status} - ${errorDetails}`);
+            } else {
+                setFormMessage('Données envoyées avec succès !');
+            }
         } catch (error) {
-            console.error('Une erreur est survenue :', error);
             setFormMessage('Erreur : une erreur est survenue.');
         }
     };
@@ -92,7 +94,7 @@ function Contact() {
                         ENVOYER LE FORMULAIRE
                     </button>
                     {/* Message après soumission du formulaire */}
-                    {formMessage && <p className="text-teal-500 mt-4">{formMessage}</p>}
+                    {formMessage && <p className="text- text-xl mt-4">{formMessage}</p>}
                 </form>
             </div>
             <div className="w-full md:w-1/2 mt-6 md:mt-0">
