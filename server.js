@@ -1,47 +1,29 @@
 const express = require('express');
-const fs = require('fs'); // Pour manipuler le système de fichiers
+const cors = require('cors'); // Assure-toi d'activer CORS si ton front-end est sur un domaine différent.
+const bodyParser = require('body-parser');
+
 const app = express();
+const PORT = 3001;
 
-// Route principale pour afficher le formulaire
+// Middleware pour permettre les requêtes CORS
+app.use(cors());
+
 app.get("/", (req, res) => {
-    return res.sendFile(__dirname + "/public/index.html");
+    res.send("")
+})
+
+// Middleware pour parser les données du formulaire en JSON
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Définir une route POST pour /submit
+app.post('/', (req, res) => {
+    console.log(req.body); // Affiche les données envoyées dans le terminal
+    res.status(200).json({ message: 'Données reçues avec succès !' });
+
 });
 
-
-// Route pour gérer la soumission du formulaire
-app.get("/form", (req, res) => {
-    const userData = {
-        nom: req.query.nom,
-        email: req.query.email,
-        message: req.query.message
-    };
-
-    // Vérifier si le fichier users.json existe déjà
-    fs.readFile('users.json', 'utf8', (err, data) => {
-        let users = [];
-        
-        if (!err && data) {
-            // Si le fichier existe et contient déjà des données, les lire
-            users = JSON.parse(data);
-        }
-        
-        // Ajouter les nouvelles données utilisateur dans le tableau
-        users.push(userData);
-
-        // Écrire le tableau mis à jour dans le fichier users.json
-        fs.writeFile('users.json', JSON.stringify(users, null, 2), (err) => {
-            if (err) {
-                console.error("Erreur lors de l'écriture dans le fichier:", err);
-                return res.status(500).send("Erreur lors de l'enregistrement des données");
-            }
-
-            // Réponse de succès
-            return res.status(200).send("Données reçues et enregistrées dans users.json");
-        });
-    });
-});
-
-// Démarrage du serveur
-app.listen(80, () => {
-    console.log("Serveur connecté sur le port 80");
+// Démarrer le serveur sur le port 3001
+app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
