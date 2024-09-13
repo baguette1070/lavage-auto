@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors'); // Assure-toi d'activer CORS si ton front-end est sur un domaine différent.
 const fs = require('fs');
+const mysql = require('mysql');
 
 const app = express();
 const PORT = 3001;
@@ -10,6 +11,13 @@ app.use(cors());
 
 // Middleware pour parser les données du formulaire en JSON
 app.use(express.json());
+
+const db = mysql.createConnection({
+    host : "localhost",
+    user : "root",
+    password : "",
+    database : "crud"
+})
 
 app.get("/", (req, res) => {
     res.send(`<h1 align="center">Serveur en ligne</h1>`)

@@ -28,7 +28,7 @@ function Faq() {
                             className={`overflow-hidden transition-all duration-500 ease-in-out ${visibleAnswer === 0 ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
                         >
                             <div className="bg-gray-100 p-4">
-                                <p>Nous nettoyons tous les types de voitures, y compris les anciennes et celles qui ne sont pas en mesure de rouler.</p>
+                                <p>Nous nettoyons tous les types de voitures, y compris les anciennes et celles qui ne sont plus en mesure de rouler.</p>
                             </div>
                         </div>
                     </div>
