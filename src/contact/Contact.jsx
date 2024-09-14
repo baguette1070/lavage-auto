@@ -51,7 +51,7 @@ function Contact() {
 
     return (
         <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto p-6">
-            <div className="w-full md:w-1/2 pr-6">
+            <div className="w-full md:w-1/2 pr-6" id={"roadToContact"}>
                 <h1 className="text-couleur-titre text-4xl mb-4">Contactez-nous</h1>
                 <p className="text-xl text-gray-600 mb-6">
                     Contactez-nous pour un devis gratuit et personnalisé.

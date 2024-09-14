@@ -29,7 +29,7 @@ db.connect((err) => {
 
 // Route GET pour vérifier que le serveur fonctionne
 app.get("/", (req, res) => {
-    res.send(`<h1 align="center" className="bg-couleur-titre rounded-3xl text-gray-300">Serveur en ligne</h1>`);
+    res.send(`<h1>Serveur en ligne</h1>`);
 });
 
 // Route POST pour insérer les données dans la base de données
