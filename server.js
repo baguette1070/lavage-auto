@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors'); // Assure-toi d'activer CORS si ton front-end est sur un domaine différent.
-const fs = require('fs');
 const mysql = require('mysql');
 
 const app = express();
@@ -12,59 +11,46 @@ app.use(cors());
 // Middleware pour parser les données du formulaire en JSON
 app.use(express.json());
 
+// Connexion à la base de données MySQL
 const db = mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password : "",
-    database : "crud"
-})
-
-app.get("/", (req, res) => {
-    res.send(`<h1 align="center">Serveur en ligne</h1>`)
-})
-
-// Définir une route POST pour /submit
-app.post('/', (req, res) => {
-    const newData = req.body;  // Données envoyées depuis le formulaire
-
-    // Lire les données existantes dans users.json
-    fs.readFile('users.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error("Erreur lors de la lecture du fichier:", err);
-            return res.status(500).send({ message: 'Erreur lors de la lecture du fichier.' });
-        }
-
-        let users = [];
-
-        // Si le fichier n'est pas vide, parse les anciennes données
-        if (data) {
-            try {
-                users = JSON.parse(data);  // Parse les anciennes données
-            } catch (parseError) {
-                console.error("Erreur de parsing JSON:", parseError);
-                return res.status(500).send({ message: 'Erreur de parsing des données existantes.' });
-            }
-        }
-
-        // Ajouter les nouvelles données
-        users.push(newData);
-
-        // Écrire les nouvelles données dans le fichier users.json
-        fs.writeFile('users.json', JSON.stringify(users, null, 2), (err) => {
-            if (err) {
-                console.error("Erreur d'écriture:", err);
-                return res.status(500).send({ message: 'Erreur lors de l\'écriture des données.' });
-            }
-
-            console.log("Fichier mis à jour avec succès.");
-            res.status(200).send({ message: 'Données reçues et mises à jour avec succès !' });
-        });
-    });
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "lavage-auto-db"
 });
 
+db.connect((err) => {
+    if (err) {
+        console.error("Erreur de connexion à la base de données:", err);
+        return;
+    }
+    console.log("Connexion à la base de données réussie !");
+});
+
+// Route GET pour vérifier que le serveur fonctionne
 app.get("/", (req, res) => {
-    res.json(newData)
-})
+    res.send(`<h1 align="center" className="bg-couleur-titre rounded-3xl text-gray-300">Serveur en ligne</h1>`);
+});
+
+// Route POST pour insérer les données dans la base de données
+app.post('/', (req, res) => {
+    const sql = "INSERT INTO `lavage-auto` (`nom`, `email`, `message`) VALUES (?, ?, ?)";
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.message
+    ];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Erreur d'insertion dans la base de données:", err.message);  // Affiche l'erreur dans la console
+            return res.status(500).json({ message: 'Erreur lors de l\'insertion des données dans la base de données.' });
+        }
+
+        console.log("Données insérées avec succès :", result);
+        return res.status(200).json({ message: 'Données insérées avec succès !' });
+    });
+});
 
 // Démarrer le serveur sur le port 3001
 app.listen(PORT, () => {
